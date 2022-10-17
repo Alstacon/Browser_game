@@ -1,4 +1,4 @@
-from classes.abstract_skills import Skill
+from classes.skills.abstract_skills import Skill
 
 
 class BlinkStrike(Skill):
