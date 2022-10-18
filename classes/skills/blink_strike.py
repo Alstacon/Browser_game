@@ -3,8 +3,8 @@ from classes.skills.abstract_skills import Skill
 
 class BlinkStrike(Skill):
     name = "Blink Strike"
-    damage = 100
-    stamina = 65
+    damage = 150
+    stamina = 50
 
     def skill_effect(self) -> str:
         self.user.stamina -= self.stamina

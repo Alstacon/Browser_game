@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 
+
 class Skill(ABC):
     user = None
     target = None
@@ -27,7 +28,7 @@ class Skill(ABC):
     def _is_stamina_enough(self):
         return self.user.stamina > self.stamina
 
-    def use(self, user: BaseUser, target: BaseUser):
+    def use(self, user, target):
         self.user = user
         self.target = target
 

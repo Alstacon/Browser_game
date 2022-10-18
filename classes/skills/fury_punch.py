@@ -1,10 +1,10 @@
-from classes.abstract_skills import Skill
+from classes.skills.abstract_skills import Skill
 
 
 class FuryPunch(Skill):
     name = "Walrus Punch"
-    damage = 350
-    stamina = 100
+    damage = 120
+    stamina = 60
 
     def skill_effect(self) -> str:
         self.user.stamina -= self.stamina
