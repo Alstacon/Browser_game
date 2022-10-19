@@ -8,17 +8,9 @@ from classes.units.enemy_unit import EnemyUnit
 from classes.units.player_unit import PlayerUnit
 from classes.units.units import unit_classes
 
+app = Flask(__name__)
 
-def create_app() -> Flask:
-    app = Flask(__name__)
-
-    return app
-
-
-app = create_app()
-
-heroes = {
-}
+heroes = {}
 
 arena = Arena()
 
@@ -39,13 +31,13 @@ def choose_hero():
     if request.method == 'GET':
         return render_template('hero_choosing.html', result=result), 200
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         data = request.values
         player = PlayerUnit(data.get('name'), unit_classes.get(data.get('unit_class')))
         player.equip_weapon(equipment.get_weapon(data.get('weapon')))
         player.equip_armor(equipment.get_armor(data.get('armor')))
         heroes['player'] = player
-        return render_template('hero_choosing.html', result=result)
+        return redirect('/choose_enemy/')
 
 
 @app.route('/choose_enemy/', methods=['GET', 'POST'])
@@ -59,13 +51,13 @@ def choose_enemy():
     if request.method == 'GET':
         return render_template('hero_choosing.html', result=result)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         data = request.values
         enemy = EnemyUnit(data.get('name'), unit_classes.get(data.get('unit_class')))
         enemy.equip_weapon(equipment.get_weapon(data.get('weapon')))
         enemy.equip_armor(equipment.get_armor(data.get('armor')))
         heroes['enemy'] = enemy
-        return redirect(url_for('fight'), code=302)
+        return redirect('/fight/')
 
 
 @app.route('/fight/')
