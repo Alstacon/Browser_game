@@ -19,13 +19,14 @@ class EnemyUnit(BaseUnit):
         if chance == 1 and is_skill_used is False:
             is_skill_used = True
             return self.use_skill(target)
-
-        if self.stamina < 20:
-            return f"{self.name} попытался использовать {self.weapon.name}, но у него не хватило выносливости."
         else:
-            if damage := self._count_damage(target) != 0:
-                return f"""{self.name} используя {self.weapon.name}
-                       пробивает {target.armor.name} и наносит Вам {damage} урона."""
+            damage = self._count_damage(target)
+            if self.stamina_points < 2:
+                return f"{self.name} попытался использовать {self.weapon.name}, но у него не хватило выносливости."
             else:
-                f"""{self.name} используя {self.weapon.name} наносит удар, но Ваш {target.armor.name}
-                    его останавливает."""
+                if damage != 0:
+                    return f"""{self.name} используя {self.weapon.name}
+                           пробивает {target.armor.name} и наносит Вам {damage} урона."""
+                else:
+                    return f"""{self.name}, используя {self.weapon.name} наносит удар, но Ваш {target.armor.name}
+                        его останавливает."""

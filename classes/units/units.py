@@ -16,8 +16,8 @@ class UnitClass:
     skill: Skill
 
 
-Warrior = UnitClass(name="Воин", max_hp=600, max_stamina=300, attack=8, stamina=9, armor=12, skill=FuryPunch())
-Thief = UnitClass(name="Вор", max_hp=500, max_stamina=250, attack=15, stamina=12, armor=10, skill=BlinkStrike())
+Warrior = UnitClass(name="Воин", max_hp=60, max_stamina=30, attack=0.8, stamina=0.9, armor=1.2, skill=FuryPunch())
+Thief = UnitClass(name="Вор", max_hp=50, max_stamina=25, attack=1.5, stamina=1.2, armor=1.0, skill=BlinkStrike())
 
 unit_classes = {
     Thief.name: Thief,
