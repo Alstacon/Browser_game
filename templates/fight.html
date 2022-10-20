@@ -18,14 +18,14 @@
             <hr>
             <p><em>Информация:</em></p>
             <hr>
-            <p>Очки здоровья: {{ heroes.player.health_points }}/{{ heroes.player.unit_class.max_health }}</br> Очки выносливости:
+            <p>Очки здоровья: {{ heroes.player.health_points }}/{{ heroes.player.unit_class.max_hp }}</br> Очки выносливости:
               {{ heroes.player.stamina_points }}/{{ heroes.player.unit_class.max_stamina }}</p>
           </div>
           <div class="col align-self-center">
             <button type="button" onclick="window.location.href='/fight/hit'" class="btn btn-success m-2">Нанести удар</button></br>
-            <button type="button" onclick="window.location.href='/fight/use-skill'" class="btn btn-danger m-2">Использовать умение</button></br>
-            <button type="button" onclick="window.location.href='/fight/pass-turn'" class="btn btn-warning m-2">Пропустить ход</button></br>
-            <button type="button" onclick="window.location.href='/fight/end-fight'" class="btn btn-secondary m-2">Завершить бой</button>
+            <button type="button" onclick="window.location.href='/fight/use_skill'" class="btn btn-danger m-2">Использовать умение</button></br>
+            <button type="button" onclick="window.location.href='/fight/pass_turn'" class="btn btn-warning m-2">Пропустить ход</button></br>
+            <button type="button" onclick="window.location.href='/fight/end_fight'" class="btn btn-secondary m-2">Завершить бой</button>
           </div>
           <div class="col align-self-start">
             <h2>{{ heroes.enemy.name }}</br>класс: <em>{{ heroes.enemy.unit_class.name }}</em></h2>
@@ -36,7 +36,7 @@
             <hr>
             <p><em>Информация:</em></p>
             <hr>
-            <p>Очки здоровья: {{ heroes.enemy.health_points }}/{{ heroes.enemy.unit_class.max_health }}</br> Очки выносливости:
+            <p>Очки здоровья: {{ heroes.enemy.health_points }}/{{ heroes.enemy.unit_class.max_hp }}</br> Очки выносливости:
               {{ heroes.enemy.stamina_points }}/{{ heroes.enemy.unit_class.max_stamina }}</p>
           </div>
         </div>

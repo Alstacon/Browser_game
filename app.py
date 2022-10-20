@@ -63,7 +63,29 @@ def choose_enemy():
 @app.route('/fight/')
 def fight():
     arena.start_game(heroes['player'], heroes['enemy'])
-    return render_template('fight.html', heroes=heroes, battle_result=arena._end_game(), result=arena.next_turn())
+    return render_template('fight.html', heroes=heroes)
+
+
+@app.route('/fight/hit')
+def fight_hit():
+    return render_template('fight.html', heroes=heroes, result=arena.player_hit(), battle_result=arena.next_turn())
+
+
+@app.route('/fight/use_skill')
+def use_skill():
+    arena.player_use_skill()
+    return render_template('fight.html', heroes=heroes)
+
+
+@app.route('/fight/pass_turn')
+def pass_turn():
+    arena.next_turn()
+    return render_template('fight.html', heroes=heroes)
+
+
+@app.route('/fight/end_fight')
+def end_fight():
+    return render_template('fight.html', heroes=heroes, result=arena.end_game())
 
 
 if __name__ == "__main__":
