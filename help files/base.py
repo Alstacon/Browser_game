@@ -38,7 +38,7 @@ class Arena(metaclass=BaseSingleton):
 
     def next_turn(self):
         # TODO СЛЕДУЮЩИЙ ХОД -> return result | return self.enemy.hit(self.player)
-        # TODO срабатывает когда игроп пропускает ход или когда игрок наносит удар.
+        # TODO срабатывает когда игрок пропускает ход или когда игрок наносит удар.
         # TODO создаем поле result и проверяем что вернется в результате функции self._check_players_hp
         # TODO если result -> возвращаем его
         # TODO если же результата пока нет и после завершения хода игра продолжается,

@@ -1,3 +1,5 @@
+import os
+
 from classes.skills.abstract_skills import Skill
 
 
@@ -7,8 +9,8 @@ class BlinkStrike(Skill):
     stamina = 5
 
     def skill_effect(self) -> str:
-        self.user.stamina_points -= self.stamina
-        self.target.health_points -= self.damage
-        return f"""{self.user.name} телепортируется за спину врага и наносит ему урон."""
+        self.target.get_damage(self.damage)
+        self.user.get_stamina_reduce(self.stamina)
+        return f"""{os.linesep}{self.user.name} телепортируется за спину врага и наносит ему {self.damage} урона."""
 
 

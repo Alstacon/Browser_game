@@ -16,7 +16,8 @@ class BaseUnit(ABC):
         self._stamina = unit_class.max_stamina
         self.weapon = None
         self.armor = None
-        self._is_skill_used = None
+        self._is_skill_used = False
+
 
     @property
     def health_points(self):
@@ -42,34 +43,36 @@ class BaseUnit(ABC):
         self.armor = armor
         return f"{self.name} экипирован броней {self.armor.name}"
 
-    def get_damage(self, damage: float) -> Optional[float]:
+    def get_damage(self, damage: float) -> None:
         self._hp -= damage
+        self._hp = 0 if self._hp < 0 else self._hp
 
-    def _get_armor_damage(self, damage):
-        damage = round((damage // 2), 2)
+
+
+    def get_armor_damage(self, damage):
+        damage = damage // 2
         self.armor.defence = round((self.armor.defence - damage), 2)
         self.armor.defence = 0 if self.armor.defence < 0 else self.armor.defence
 
-    def _get_stamina_reduce(self, cause: str):
-        points = {
-            'attack': 2,
-            'defence': 1
-        }
-        self._stamina -= points[cause]
+    def get_stamina_reduce(self, stamina_cost: int):
+        self._stamina -= stamina_cost
         self._stamina = 0 if self._stamina < 0 else self._stamina
 
     def _count_damage(self, target) -> int:
-        if target.stamina_points >= 1 and target.armor.defence != 0:
+        if target.stamina_points >= 2 and target.armor.defence != 0:
             random_damage = self.unit_class.attack + round(
-                random.uniform(self.weapon.min_damage, self.weapon.max_damage), 2)
-            damage = round(random_damage - ((random_damage - target.armor.defence) // 2))
+                random.uniform(self.weapon.min_damage, self.weapon.max_damage))
+            damage = round(random_damage - target.armor.defence)
             damage = 0 if damage < 0 else damage
-            target._get_stamina_reduce('defence')
+            target.get_armor_damage(random_damage)
+            target.get_stamina_reduce(target.armor.stamina_per_turn)
         else:
-            damage = self.unit_class.attack
+            damage = round(
+                self.unit_class.attack + random.uniform(self.weapon.min_damage, self.weapon.max_damage)
+            )
+            target.get_armor_damage(damage)
         target.get_damage(damage)
-        target._get_armor_damage(damage)
-        self._get_stamina_reduce('attack')
+        self.get_stamina_reduce(self.weapon.stamina_per_hit)
         return damage
 
     @abstractmethod
@@ -85,7 +88,8 @@ class BaseUnit(ABC):
         self.unit_class.skill.use(user=self, target=target)
         и уже эта функция вернем нам строку которая характеризует выполнение умения
         """
-        if self._is_skill_used:
+        if self._is_skill_used is True:
             return """Навык уже использован"""
         else:
-            self.unit_class.skill.use(user=self, target=target)
+            self._is_skill_used = True
+            return self.unit_class.skill.use(user=self, target=target)
