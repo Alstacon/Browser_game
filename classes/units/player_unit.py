@@ -10,10 +10,10 @@ class PlayerUnit(BaseUnit):
         вызывается функция self._count_damage(target)
         а также возвращается результат в виде строки
         """
-        damage = self._count_damage(target)
-        if self.stamina_points < 1:
+        if self.stamina_points < 5:
             return f"{self.name} попытался использовать {self.weapon.name}, но у него не хватило выносливости."
         else:
+            damage = self._count_damage(target)
             if damage != 0:
                 return f"""{self.name} используя {self.weapon.name}
                 пробивает {target.armor.name} соперника и наносит {damage} урона."""

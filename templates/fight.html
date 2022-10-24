@@ -45,7 +45,9 @@
         <hr>
         <div class="row">
           <div class="col align-content-center">
-            <p><em>{{ result }}</em></p>
+              <p><em>{%  for item in result %}</em></p>
+                <p>{{ item }}</p>
+            {% endfor %}
             <p>{{ battle_result }}</p>
           </div>
         </div>
