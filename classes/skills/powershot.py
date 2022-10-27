@@ -13,5 +13,3 @@ class Powershot(Skill):
         self.user.get_stamina_reduce(self.stamina)
         return f"""{self.user.name} заряжает лук, чтобы совершить невероятно точный и мощный выстрел
         наносящий {self.damage} урона."""
-
-
