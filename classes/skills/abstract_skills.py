@@ -34,4 +34,6 @@ class Skill(ABC):
         if self._is_stamina_enough:
             return self.skill_effect()
         else:
-            return f"""{self.user.name} попытался использовать {self.name}, но у него недостаточно выносливости"""
+            return [f"""
+            {self.user.name} попытался использовать {self.name}, но у него недостаточно выносливости
+            """]
