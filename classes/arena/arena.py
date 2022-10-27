@@ -2,14 +2,12 @@ from classes.arena.base_arena import BaseSingleton
 from classes.units.abstract_unit import BaseUnit
 
 
-
 class Arena(metaclass=BaseSingleton):
     STAMINA_PER_ROUND = 20
     player = None
     enemy = None
     game_is_running = False
     battle_result = None
-
 
     def start_game(self, player: BaseUnit, enemy: BaseUnit) -> None:
         self.player = player
@@ -40,7 +38,7 @@ class Arena(metaclass=BaseSingleton):
             self._stamina_regeneration()
             return self.enemy.hit(self.player)
 
-    def end_game(self) -> list:
+    def end_game(self) -> str:
         result = self._check_players_hp()
         self._instances = {}
         self.game_is_running = False

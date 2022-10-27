@@ -12,5 +12,3 @@ class BlinkStrike(Skill):
         self.target.get_damage(self.damage)
         self.user.get_stamina_reduce(self.stamina)
         return f"""{os.linesep}{self.user.name} телепортируется за спину врага и наносит ему {self.damage} урона."""
-
-

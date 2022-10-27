@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 
-
 class Skill(ABC):
     user = None
     target = None
@@ -36,8 +35,3 @@ class Skill(ABC):
             return self.skill_effect()
         else:
             return f"""{self.user.name} попытался использовать {self.name}, но у него недостаточно выносливости"""
-
-
-
-
-

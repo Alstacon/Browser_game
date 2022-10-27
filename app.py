@@ -56,7 +56,7 @@ def fight_hit():
     if arena.game_is_running:
         return render_template('fight.html', heroes=heroes, result=arena.player_hit())
     else:
-        return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn()[0])
+        return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn())
 
 
 @app.route('/fight/use_skill')
@@ -64,7 +64,7 @@ def use_skill():
     if arena.game_is_running:
         return render_template('fight.html', heroes=heroes, result=arena.player_use_skill())
     else:
-        return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn()[0])
+        return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn())
 
 
 @app.route('/fight/pass_turn')
@@ -72,7 +72,7 @@ def pass_turn():
     if arena.game_is_running:
         return render_template('fight.html', heroes=heroes, result=arena.next_turn()[0])
     else:
-        return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn()[0])
+        return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn())
 
 
 @app.route('/fight/end_fight')

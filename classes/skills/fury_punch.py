@@ -13,5 +13,3 @@ class FuryPunch(Skill):
         self.user.get_stamina_reduce(self.stamina)
         return f"""{os.linesep}{self.user.name} совершает свой коронный удар — настолько мощный, что подбрасывает жертву в воздух,
          нанося ей {self.damage} урона."""
-
-
