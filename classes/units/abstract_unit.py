@@ -33,34 +33,29 @@ class BaseUnit(ABC):
         return f"{self.name} экипирован броней {self.armor.name}"
 
     def get_damage(self, damage: float) -> None:
-        if self.armor.defence == 0:
-            self._hp = round(self._hp - damage, 2)
-        else:
-            self._hp = round((self._hp + self.armor.defence) - damage, 2)
+        self._hp = round(self._hp - damage, 2)
         self._hp = 0 if self._hp < 0 else self._hp
 
-    def get_armor_damage(self, damage):
-        damage = (damage / self.armor.defence) / 10
-        self.armor.defence = round((self.armor.defence - damage), 2)
-        self.armor.defence = 0 if self.armor.defence < 0 else self.armor.defence
+    def get_damage_reduce(self, damage):
+        armor = self.armor.defence * self.unit_class.armor
+        damage = round(damage - armor, 2)
+        damage = 0 if damage < 0 else damage
+        return damage
 
     def get_stamina_reduce(self, stamina_cost: int):
         self._stamina = round(self._stamina - stamina_cost, 2)
         self._stamina = 0 if self._stamina < 0 else self._stamina
 
     def _count_damage(self, target) -> int:
-        if target.stamina_points >= 2 and target.armor.defence != 0:
-            damage = self.unit_class.attack + round(
-                random.uniform(self.weapon.min_damage, self.weapon.max_damage))
-            target.get_armor_damage(damage)
+        if target.stamina_points >= 2:
+            damage = self.unit_class.attack * random.uniform(self.weapon.min_damage, self.weapon.max_damage)
+            final_damage = self.get_damage_reduce(damage)
             target.get_stamina_reduce(target.armor.stamina_per_turn)
         else:
-            damage = round(
-                self.unit_class.attack + random.uniform(self.weapon.min_damage, self.weapon.max_damage)
-            )
-        target.get_damage(damage)
+            final_damage = self.unit_class.attack * random.uniform(self.weapon.min_damage, self.weapon.max_damage)
+        target.get_damage(final_damage)
         self.get_stamina_reduce(self.weapon.stamina_per_hit)
-        return damage
+        return final_damage
 
     @abstractmethod
     def hit(self, target) -> str:

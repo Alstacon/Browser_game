@@ -69,10 +69,7 @@ def use_skill():
 
 @app.route('/fight/pass_turn')
 def pass_turn():
-    if arena.game_is_running:
-        return render_template('fight.html', heroes=heroes, result=arena.next_turn()[0])
-    else:
-        return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn())
+    return render_template('fight.html', heroes=heroes, battle_result=arena.next_turn())
 
 
 @app.route('/fight/end_fight')

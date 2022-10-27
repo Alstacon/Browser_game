@@ -3,7 +3,7 @@ from classes.units.abstract_unit import BaseUnit
 
 
 class Arena(metaclass=BaseSingleton):
-    STAMINA_PER_ROUND = 20
+    STAMINA_PER_ROUND = 1
     player = None
     enemy = None
     game_is_running = False
@@ -23,11 +23,15 @@ class Arena(metaclass=BaseSingleton):
             return "Никто не устоял в бою! Ничья!"
 
     def _stamina_regeneration(self) -> None:
-        self.player._stamina += self.STAMINA_PER_ROUND
+        self.player._stamina = round(
+            self.player._stamina + self.STAMINA_PER_ROUND * self.player.unit_class.stamina, 2
+        )
         if self.player._stamina > self.player.unit_class.max_stamina:
             self.player._stamina = self.player.unit_class.max_stamina
 
-        self.enemy._stamina += self.STAMINA_PER_ROUND
+        self.enemy._stamina = round(
+            self.enemy._stamina + self.STAMINA_PER_ROUND * self.enemy.unit_class.stamina, 2
+        )
         if self.enemy._stamina > self.enemy.unit_class.max_stamina:
             self.enemy._stamina = self.enemy.unit_class.max_stamina
 
