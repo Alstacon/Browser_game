@@ -7,6 +7,4 @@ COPY . .
 
 EXPOSE 80
 
-CMD flask run -h 0.0.0.0 -p 80
-
-
+CMD gunicorn --config gunicorn.conf.py wsgi:app

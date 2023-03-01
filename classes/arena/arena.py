@@ -16,11 +16,11 @@ class Arena(metaclass=BaseSingleton):
 
     def _check_players_hp(self) -> str | None:
         if self.player.health_points <= 0:
-            return "Не могу поверить, Вы проиграли!"
+            return 'Не могу поверить, Вы проиграли!'
         if self.enemy.health_points <= 0:
-            return "Битва отгремела не напрасно! Вы победили!"
+            return 'Битва отгремела не напрасно! Вы победили!'
         if self.player.health_points <= 0 and self.enemy.health_points <= 0:
-            return "Никто не устоял в бою! Ничья!"
+            return 'Никто не устоял в бою! Ничья!'
 
     def _stamina_regeneration(self) -> None:
         self.player._stamina = round(

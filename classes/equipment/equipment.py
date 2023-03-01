@@ -11,7 +11,7 @@ from classes.equipment.weapon import Weapon
 class Equipment:
     @staticmethod
     def _get_equipments() -> EquipmentData:
-        equipment_file = open("./data/equipment.json")
+        equipment_file = open('./data/equipment.json')
         data = json.load(equipment_file)
         equipment_schema = marshmallow_dataclass.class_schema(EquipmentData)
         try:

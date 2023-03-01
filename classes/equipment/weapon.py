@@ -15,5 +15,3 @@ class Weapon:
 
     class Meta:
         unknown = marshmallow.EXCLUDE
-
-

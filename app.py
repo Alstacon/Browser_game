@@ -15,7 +15,7 @@ def index_page():
 
 @app.route('/choose_hero/', methods=['GET', 'POST'])
 def choose_hero():
-    char_information['header'] = "Выберите героя для себя"
+    char_information['header'] = 'Выберите героя для себя'
     char_information['url'] = "window.location.href='/choose_enemy/'"
     if request.method == 'GET':
         return render_template('hero_choosing.html', result=char_information), 200
@@ -31,7 +31,7 @@ def choose_hero():
 
 @app.route('/choose_enemy/', methods=['GET', 'POST'])
 def choose_enemy():
-    char_information['header'] = "Выберите героя для соперника"
+    char_information['header'] = 'Выберите героя для соперника'
     char_information['url'] = "window.location.href='/fight/'"
     if request.method == 'GET':
         return render_template('hero_choosing.html', result=char_information), 200
@@ -74,8 +74,8 @@ def pass_turn():
 
 @app.route('/fight/end_fight')
 def end_fight():
-    return render_template("index.html", heroes=heroes)
+    return render_template('index.html', heroes=heroes)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()
