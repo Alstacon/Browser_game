@@ -1,10 +1,8 @@
-import os
-
 from classes.skills.abstract_skills import Skill
 
 
 class SunStrike(Skill):
-    name = "Sun Strike"
+    name = 'Sun Strike'
     damage = 25
     stamina = 10
 
@@ -13,5 +11,3 @@ class SunStrike(Skill):
         self.user.get_stamina_reduce(self.stamina)
         return f"""{self.user.name} посылает катастрофический луч ожесточённой энергии солнца, который
         наносит {self.damage} урона."""
-
-

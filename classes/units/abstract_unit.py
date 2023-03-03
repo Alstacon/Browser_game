@@ -26,11 +26,11 @@ class BaseUnit(ABC):
 
     def equip_weapon(self, weapon: Weapon):
         self.weapon = weapon
-        return f"{self.name} экипирован оружием {self.weapon.name}"
+        return f'{self.name} экипирован оружием {self.weapon.name}'
 
     def equip_armor(self, armor: Armor):
         self.armor = armor
-        return f"{self.name} экипирован броней {self.armor.name}"
+        return f'{self.name} экипирован броней {self.armor.name}'
 
     def get_damage(self, damage: float) -> None:
         self._hp = round(self._hp - damage, 2)

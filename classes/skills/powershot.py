@@ -1,10 +1,8 @@
-import os
-
 from classes.skills.abstract_skills import Skill
 
 
 class Powershot(Skill):
-    name = "Powershot"
+    name = 'Powershot'
     damage = 27
     stamina = 12
 

@@ -4,7 +4,7 @@ from classes.skills.abstract_skills import Skill
 
 
 class BlinkStrike(Skill):
-    name = "Blink Strike"
+    name = 'Blink Strike'
     damage = 15
     stamina = 5
 
